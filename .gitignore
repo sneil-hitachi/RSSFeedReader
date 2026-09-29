@@ -1,0 +1,33 @@
+# .NET build output
+bin/
+obj/
+out/
+
+# User-specific files
+*.user
+*.suo
+*.userosscache
+*.sln.docstates
+
+# Visual Studio / Rider / VS Code
+.vs/
+.vscode/
+.idea/
+*.iml
+
+# NuGet
+packages/
+*.nupkg
+
+# Build results
+[Dd]ebug/
+[Rr]elease/
+
+# Misc
+*.log
+*.tmp
+.DS_Store
+Thumbs.db
+
+# spec-kit local pointer (not shared across machines)
+.specify/feature.json
