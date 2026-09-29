@@ -37,8 +37,9 @@ if (app.Environment.IsDevelopment())
 
 app.UseCors(FrontendCorsPolicy);
 
-/// <summary>Request body for <c>POST /api/subscriptions</c>.</summary>
-/// <param name="Url">The feed URL to subscribe to.</param>
+// Adds a new subscription: trims the submitted Url, rejects empty/whitespace-only values with
+// 400 Bad Request, otherwise stores it and returns 201 Created with the new Subscription
+// (FR-002, FR-003, FR-006, FR-008).
 app.MapPost("/api/subscriptions", (AddSubscriptionRequest request, ISubscriptionStore store) =>
 {
     var url = request.Url?.Trim() ?? string.Empty;
@@ -61,6 +62,8 @@ app.MapGet("/api/subscriptions", (ISubscriptionStore store) => Results.Ok(store.
 
 app.Run();
 
+/// <summary>Request body for <c>POST /api/subscriptions</c>.</summary>
+/// <param name="Url">The feed URL to subscribe to.</param>
 record AddSubscriptionRequest(string? Url);
 
 /// <summary>

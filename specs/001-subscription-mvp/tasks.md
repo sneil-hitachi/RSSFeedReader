@@ -118,10 +118,10 @@ subscriptions and confirm all are visible, newest-first, per contracts/subscript
 
 **Purpose**: Improvements that affect both user stories
 
-- [ ] T027 [P] Add XML doc comments to the `Subscription` model and the two endpoint handlers in `backend/RSSFeedReader.Api` (constitution Principle III)
-- [ ] T028 [P] Run `dotnet build` on both `backend/RSSFeedReader.Api` and `frontend/RSSFeedReader.UI` and resolve all warnings until the build is clean (constitution Principle III)
-- [ ] T029 Execute the full quickstart.md manual validation (steps 1-7) and confirm success criteria SC-001–SC-004 all pass
-- [ ] T030 [P] Review `backend/RSSFeedReader.Api/Program.cs` CORS policy against both `launchSettings.json` files and `frontend/RSSFeedReader.UI/wwwroot/appsettings.json` for port/origin consistency (constitution Technology & Security Requirements)
+- [X] T027 [P] Add XML doc comments to the `Subscription` model and the two endpoint handlers in `backend/RSSFeedReader.Api` (constitution Principle III)
+- [X] T028 [P] Run `dotnet build` on both `backend/RSSFeedReader.Api` and `frontend/RSSFeedReader.UI` and resolve all warnings until the build is clean (constitution Principle III)
+- [X] T029 Execute the full quickstart.md manual validation (steps 1-7) and confirm success criteria SC-001–SC-004 all pass
+- [X] T030 [P] Review `backend/RSSFeedReader.Api/Program.cs` CORS policy against both `launchSettings.json` files and `frontend/RSSFeedReader.UI/wwwroot/appsettings.json` for port/origin consistency (constitution Technology & Security Requirements)
 
 ---
 
