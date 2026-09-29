@@ -1,0 +1,77 @@
+@page "/"
+@using RSSFeedReader.UI.Services
+@inject SubscriptionApiClient ApiClient
+
+<PageTitle>Subscriptions</PageTitle>
+
+<h1>Feed Subscriptions</h1>
+
+<form @onsubmit="HandleAddAsync" @onsubmit:preventDefault>
+    <input type="text" @bind="_newUrl" @bind:event="oninput" placeholder="https://example.com/feed.xml" style="width: 400px;" />
+    <button type="submit">Add</button>
+</form>
+
+@if (!string.IsNullOrEmpty(_errorMessage))
+{
+    <p style="color: red;">@_errorMessage</p>
+}
+
+@if (_isLoading)
+{
+    <p>Loading...</p>
+}
+else if (_subscriptions.Count == 0)
+{
+    <p>No subscriptions yet. Add a feed URL above to get started.</p>
+}
+else
+{
+    <ul>
+        @foreach (var subscription in _subscriptions)
+        {
+            <li @key="subscription.Id">@subscription.Url</li>
+        }
+    </ul>
+}
+
+@code {
+    private readonly List<SubscriptionDto> _subscriptions = new();
+    private string _newUrl = string.Empty;
+    private string? _errorMessage;
+    private bool _isLoading = true;
+
+    protected override async Task OnInitializedAsync()
+    {
+        try
+        {
+            var loaded = await ApiClient.GetAllAsync();
+            _subscriptions.Clear();
+            _subscriptions.AddRange(loaded);
+        }
+        catch (Exception ex)
+        {
+            _errorMessage = ex.Message;
+        }
+        finally
+        {
+            _isLoading = false;
+        }
+    }
+
+    private async Task HandleAddAsync()
+    {
+        _errorMessage = null;
+
+        try
+        {
+            var created = await ApiClient.AddAsync(_newUrl);
+            _subscriptions.Insert(0, created);
+            _newUrl = string.Empty;
+        }
+        catch (Exception ex)
+        {
+            _errorMessage = ex.Message;
+        }
+    }
+}
+
