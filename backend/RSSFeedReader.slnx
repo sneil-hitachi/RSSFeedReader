@@ -1,4 +1,0 @@
-<Solution>
-  <Project Path="RSSFeedReader.Api.Tests/RSSFeedReader.Api.Tests.csproj" />
-  <Project Path="RSSFeedReader.Api/RSSFeedReader.Api.csproj" />
-</Solution>
